@@ -1,0 +1,11 @@
+#!/bin/bash
+while echo "Enter the desired systems IP:"|read -r system
+do 
+    ping -n 1 "$system" | egrep '(ms|0.0%)' &> /dev/null
+    if (( "$?" == 0 ))
+    then
+      echo " Host $system was succesfully contacted - $(date)" >> $(system).txt
+    else
+      echo "System Unreachable,try again"
+    fi
+done
