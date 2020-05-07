@@ -1,21 +1,29 @@
 #!/bin/bash
 #
-# Daily_Archive - Archive designated files & directories
-########################################################
+# Hourly_Archive - Every hour create an archive
+#########################################################
 #
-# Gather Current Date
+# Set Configuration File
 #
-DATE=$(date +%y%m%d)
+CONFIG_FILE=/archive/hourly/Files_To_Backup
 #
-# Set Archive File Name
+# Set Base Archive Destination Location
 #
-FILE=archive$DATE.tar.gz
+BASEDEST=/archive/hourly
 #
-# Set Configuration and Destination File
+# Gather Current Day, Month & Time
 #
-CONFIG_FILE=/archive/Files_To_Backup
-DESTINATION=/archive/$FILE
+DAY=$(date +%d)
+MONTH=$(date +%m)
+TIME=$(date +%k%M)”
+
+# Create Archive Destination Directory
 #
+mkdir -p $BASEDEST/$MONTH/$DAY
+#
+# Build Archive Destination File Name
+#
+DESTINATION=$BASEDEST/$MONTH/$DAY/archive$TIME.tar.gz
 ######### Main Script #########################
 #
 # Check Backup Config file exists
