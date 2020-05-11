@@ -1,0 +1,6 @@
+#!/bin/bash
+Echo "What is target host address?"
+read HOSTADDR
+ssh -R 1337:localhost:22 root@$HOSTADDR
+
+
